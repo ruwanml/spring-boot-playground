@@ -20,10 +20,27 @@ public class SpringBootPlaygroundApplication {
 			//createStudent(studentDAO);
 			//readStudent(studentDAO);
 
-			queryForStudents(studentDAO);
+			//queryForStudents(studentDAO);
 			
-			queryForStudentsByLastName(studentDAO);
+			//queryForStudentsByLastName(studentDAO);
+
+			updateStudent(studentDAO);
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+
+		// retrieve student based on the id: primary key
+		Student student = studentDAO.findById(1);
+
+		// change last name to "Booh"
+		student.setLastName("Booh");
+
+		// update the student
+		studentDAO.update(student);
+
+		// display the updated student
+		System.out.println(student);
 	}
 
 	private void queryForStudentsByLastName(StudentDAO studentDAO) {
