@@ -15,8 +15,18 @@ public class SpringBootPlaygroundApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
+			//createStudent(studentDAO);
+			readStudent(studentDAO);
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+
+		// retrieve student based on the id: primary key
+		Student student = studentDAO.findById(1);
+
+		// display student
+		System.out.println("found the student: " + student);
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
