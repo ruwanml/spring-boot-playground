@@ -2,8 +2,6 @@ package com.conceptandcoding.springbootplayground.rest;
 
 import com.conceptandcoding.springbootplayground.entity.Student;
 import jakarta.annotation.PostConstruct;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -44,42 +42,5 @@ public class StudentRestController {
         }
 
         return studentList.get(studentId);
-    }
-
-    // add an exception handler using @ExceptionHandler
-
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exception) {
-
-        // create a StudentResponse
-
-        StudentErrorResponse error = new StudentErrorResponse();
-
-        error.setStatus(HttpStatus.NOT_FOUND.value());
-        error.setMessage(exception.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
-
-        // return ResponseEntity
-
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-    }
-
-    // add another exception handler ... to catch any exception (catch all)
-    // Ex: '/api/students/zzzzz' - invalid data type
-
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(Exception exception) {
-
-        // create a StudentResponse
-
-        StudentErrorResponse error = new StudentErrorResponse();
-
-        error.setStatus(HttpStatus.BAD_REQUEST.value());
-        error.setMessage(exception.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
-
-        // return ResponseEntity
-
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
