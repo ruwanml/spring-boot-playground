@@ -24,8 +24,14 @@ public class SpringBootPlaygroundApplication {
 			
 			//queryForStudentsByLastName(studentDAO);
 
-			updateStudent(studentDAO);
+			//updateStudent(studentDAO);
+
+			deleteStudent(studentDAO);
 		};
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		studentDAO.delete(1);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
